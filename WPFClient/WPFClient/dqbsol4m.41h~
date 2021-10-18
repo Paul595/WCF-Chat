@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.ServiceModel;
+using System.ServiceModel.Discovery;
+using System.ServiceModel.Description;
+using System.Threading;
+
+namespace WPFClient
+{
+    [ServiceContract]
+    public interface IChat
+    {
+        [OperationContract]
+        void sendMessage(string sender, string data);
+        [OperationContract]
+
+        string returnMessages(int inMessageIndex, out int lastMessage);
+    }
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public static IChat channel;
+        public static int messageIndex = 0;
+        public MainWindow()
+        {
+            InitializeComponent();
+            
+           
+
+           
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = YourName.Text;
+            string message = YourMessage.Text;
+
+            channel.sendMessage(name, message);
+        }
+
+        private EndpointAddress FindEndpoint()
+        {
+            Console.Write("Starte Suche via UDP...");
+
+            DiscoveryClient dc = new DiscoveryClient(new UdpDiscoveryEndpoint());
+
+            FindCriteria criterium = new FindCriteria(typeof(IChat));
+            //criterium.Duration = new TimeSpan(0, 0, 1);
+            criterium.MaxResults = 1;
+            FindResponse res = dc.Find(criterium);
+
+            Console.WriteLine("gefunden:");
+            Console.WriteLine(res.Endpoints[0].Address.ToString());
+
+            return res.Endpoints[0].Address;
+        }
+
+        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+        {
+            EndpointAddress endPoint = FindEndpoint();
+            ChannelFactory<IChat> fabrik = new ChannelFactory<IChat>(
+                new WSHttpBinding(SecurityMode.None),
+                "http://" + ip.Text + ":2310/Mathe");
+            channel = fabrik.CreateChannel();
+            status.Content = "Connected";
+            int delay = 50;
+            var cancellationTokenSource = new CancellationTokenSource();
+            var token = cancellationTokenSource.Token;
+            var listener = Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            MessagesBox.Text += channel.returnMessages(messageIndex, out messageIndex);
+                            //MessagesBox.Focus();
+                            MessagesBox.ScrollToEnd();
+                        });
+                    }
+                    catch (Exception) { };
+
+                    Thread.Sleep(delay);
+                    if (token.IsCancellationRequested)
+                        break;
+                }
+
+                // cleanup, e.g. close connection
+            }, token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
+    }
+
+}
