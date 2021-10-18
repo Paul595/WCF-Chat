@@ -72,7 +72,7 @@ namespace WPFClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            channel.sendMessage(YourMessage.Text);
+            channel.sendMessage(YourMessage.Text,YourName.Text==""?null:YourName.Text);
         }
 
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
