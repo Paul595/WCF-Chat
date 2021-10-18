@@ -1,0 +1,7 @@
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\bin\Release\WCFService.exe.config
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\bin\Release\WCFService.exe
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\bin\Release\WCFService.pdb
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\obj\Release\WCFService.csproj.AssemblyReference.cache
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\obj\Release\WCFService.csproj.CoreCompileInputs.cache
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\obj\Release\WCFService.exe
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Discovery-PushDataToClient\WCFService\WCFService\obj\Release\WCFService.pdb
