@@ -41,7 +41,7 @@ namespace WPFClient
         {
             InitializeComponent();
 
-            int delay = 50; //in ms
+            int delay = 100; //in ms
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var listener = Task.Factory.StartNew(() =>
@@ -80,12 +80,14 @@ namespace WPFClient
 
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ChannelFactory<IChat> fabrik = new ChannelFactory<IChat>(
                 new WSHttpBinding(SecurityMode.None),
                 "http://"+ip.Text+":2310/Chat");
             channel = fabrik.CreateChannel();
             status.Content = "Connected";
+
+            channel.sendMessage("Test", "");
             connected = true;
 
             return;

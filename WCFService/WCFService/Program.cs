@@ -78,10 +78,10 @@ namespace WCFService
                 new WSHttpBinding(SecurityMode.None),
                 "http://"+ip+":2310/Chat");
 
-            meinHost.Description.Behaviors.Add(
-                new ServiceDiscoveryBehavior());
-            meinHost.Description.Endpoints.Add(
-                new UdpDiscoveryEndpoint());
+            //meinHost.Description.Behaviors.Add(
+            //    new ServiceDiscoveryBehavior());
+            //meinHost.Description.Endpoints.Add(
+            //    new UdpDiscoveryEndpoint());
 
             meinHost.Open();
 
