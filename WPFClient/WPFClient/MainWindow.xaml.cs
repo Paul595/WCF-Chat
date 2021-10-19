@@ -41,7 +41,7 @@ namespace WPFClient
         {
             InitializeComponent();
 
-            int delay = 100; //in ms
+            int delay = 1000; //in ms
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var listener = Task.Factory.StartNew(() =>
