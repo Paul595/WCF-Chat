@@ -26,3 +26,10 @@ C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCFService\WCFService\obj\Debu
 C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.csproj.CoreCompileInputs.cache
 C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.exe
 C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.pdb
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\bin\Debug\WCFService.exe.config
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\bin\Debug\WCFService.exe
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\bin\Debug\WCFService.pdb
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.csproj.AssemblyReference.cache
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.csproj.CoreCompileInputs.cache
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.exe
+C:\Users\paulk\Desktop\Schule\5AHEL\FSST\WCF-Chat\WCF-Chat\WCFService\WCFService\obj\Debug\WCFService.pdb

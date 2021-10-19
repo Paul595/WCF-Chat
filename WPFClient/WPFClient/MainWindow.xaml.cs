@@ -68,11 +68,14 @@ namespace WPFClient
 
                 // cleanup, e.g. close connection
             }, token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            return;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            channel.sendMessage(YourMessage.Text,YourName.Text==""?null:YourName.Text);
+            string n = YourName.Text == "" ? null : YourName.Text;
+            channel.sendMessage(YourMessage.Text,n);
+            return;
         }
 
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
@@ -84,7 +87,8 @@ namespace WPFClient
             channel = fabrik.CreateChannel();
             status.Content = "Connected";
             connected = true;
-            
+
+            return;
         }
     }
 
