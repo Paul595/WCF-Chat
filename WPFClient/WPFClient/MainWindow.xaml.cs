@@ -41,7 +41,7 @@ namespace WPFClient
         {
             InitializeComponent();
 
-            int delay = 1000; //in ms
+            int delay = 50; //in ms
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var listener = Task.Factory.StartNew(() =>
@@ -54,7 +54,7 @@ namespace WPFClient
                         {
                             this.Dispatcher.Invoke(() =>
                             {
-                                MessagesBox.Text += channel.receiveMessages(ref messageIndex);
+                                MessagesBox.Text += channel.receiveMessages(ref messageIndex,true);
                                 //MessagesBox.Focus();
                                 MessagesBox.ScrollToEnd();
                             });
