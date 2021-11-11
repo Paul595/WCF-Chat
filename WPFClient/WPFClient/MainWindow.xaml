@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="557">
+        Title="MainWindow" Height="450" Width="557"
+        KeyDown="Window_KeyDown"
+        Closing="Window_Closing"
+        >
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="224" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="529" x:Name="MessagesBox"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272" Margin="33,257,0,0" x:Name="YourMessage"/>
-        <Button Content="Senden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="344,256,0,0" Click="Button_Click"/>
+        <Button Content="Send" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="344,256,0,0" Click="Button_Click"/>
         <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,299,0,0" x:Name="YourName"/>
         <Label Content="Disconnected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,373,0,0" x:Name="status"/>
         <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,345,0,0" x:Name="ip"/>
         <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="180,348,0,0" Click="ButtonConnect_Click"/>
+        <Label Content="PremiumUserCount: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,373,0,0" x:Name="userCount"/>
 
     </Grid>
 </Window>

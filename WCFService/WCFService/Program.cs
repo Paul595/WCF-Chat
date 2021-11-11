@@ -15,11 +15,17 @@ namespace WCFService
         void sendMessage(string message, string sender="");
         [OperationContract]
         string receiveMessages(ref int id,bool myService =false);
+        [OperationContract]
+        int getUserCount();
+        [OperationContract]
+        void join();
+        [OperationContract]
+        void leave();
     }
     public class Chat : IChat 
     {
         static List<Message> messages = new List<Message>();
-   
+        static int userCount = 0;
         public string whichServiceAmI()
         {
             return "KatzensteinerMiedl";
@@ -27,12 +33,13 @@ namespace WCFService
 
         public void sendMessage(string message, string sender="")
         {
+            Console.WriteLine(sender + ":"+message);
             messages.Add(new Message(sender, message));
         }
 
         public string receiveMessages(ref int id,bool mySerivce = false)
         {
-
+            
             string reString = "";
             
             for(int i = id + 1; i <messages.Count; i++)
@@ -43,6 +50,23 @@ namespace WCFService
             id = messages.Count-1;
             return reString;
         }
+
+        public int getUserCount()
+        {
+            return userCount;
+        }
+
+        public void join()
+        {
+            userCount++;
+        }
+
+        public void leave()
+        {
+            userCount--;
+        }
+        
+   
 
     }
     class Message
