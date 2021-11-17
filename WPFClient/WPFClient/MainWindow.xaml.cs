@@ -67,7 +67,11 @@ namespace WPFClient
                                 MessagesBox.ScrollToEnd();
                             });
                         }
-                        catch (Exception) { };
+                        catch (Exception e) {
+
+                            disconnectAll();
+                            MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e;
+                        };
                     }
                     Thread.Sleep(delay);
                     if (token.IsCancellationRequested)
@@ -86,7 +90,15 @@ namespace WPFClient
 
 
             string n = YourName.Text == "" ?  sys_name: YourName.Text;
+            try { 
             channel.sendMessage(YourMessage.Text,n);
+            }
+            catch (Exception e1)
+            {
+
+                disconnectAll();
+                MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e1;
+            };
             YourMessage.Text = "";
             return;
         }
@@ -95,22 +107,72 @@ namespace WPFClient
             
         //}
 
+        private void disconnectAll()
+        {
+            var converter2 = new System.Windows.Media.BrushConverter();
+            var brush2 = (Brush)converter2.ConvertFromString("#FFFF0000");
+            status.Foreground = brush2;
+            btConnect.Content = "Connect";
+            try { 
+            channel.leave();
+            channel = null;
+            }
+            catch (Exception e)
+            {
+
+                disconnectAll();
+                MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e;
+            };
+            connected = false;
+            messageIndex = 0;
+            MessagesBox.Text = "";
+            userCount.Content = "PremiumUserCount: 0";
+            return;
+        }
+
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
-            if (connected) return;
+            if (connected)
+            {
+                disconnectAll();   
+                return;
+            }
+                
+
             string sys_name = System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString().Split('\\')[1];
             string n = YourName.Text == "" ? sys_name : YourName.Text;
 
 
+            try { 
             ChannelFactory<IChat> fabrik = new ChannelFactory<IChat>(
                 new WSHttpBinding(SecurityMode.None),
                 "http://"+ip.Text+":2310/Chat");
             channel = fabrik.CreateChannel();
+            }
+            catch (Exception e1)
+            {
+
+                disconnectAll();
+                MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e1;
+            };
             status.Content = "Connected";
+            var converter = new System.Windows.Media.BrushConverter();
+            var brush = (Brush)converter.ConvertFromString("#FF08B800");
+            status.Foreground = brush;
+            btConnect.Content = "Disconnect";
             connected = true;
-            
+            userCount.Content = "PremiumUserCount: 0";
+
+            try { 
             channel.join();
-            
+            }
+            catch (Exception e1)
+            {
+
+                disconnectAll();
+                MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e1;
+            };
+
             return;
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -123,7 +185,15 @@ namespace WPFClient
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            try { 
             if(connected)channel.leave();
+            }
+            catch (Exception e1)
+            {
+
+                disconnectAll();
+                MessagesBox.Text = "Ein Fehler ist aufgetreten:" + e1;
+            };
         }   
 
     }

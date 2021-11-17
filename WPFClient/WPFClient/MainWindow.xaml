@@ -11,13 +11,17 @@
         >
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="224" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="529" x:Name="MessagesBox"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272" Margin="33,257,0,0" x:Name="YourMessage"/>
-        <Button Content="Send" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="344,256,0,0" Click="Button_Click"/>
-        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,299,0,0" x:Name="YourName"/>
-        <Label Content="Disconnected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,373,0,0" x:Name="status"/>
-        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,345,0,0" x:Name="ip"/>
-        <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="180,348,0,0" Click="ButtonConnect_Click"/>
-        <Label Content="PremiumUserCount: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,373,0,0" x:Name="userCount"/>
+        <TextBox HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" Margin="74,251,0,0"  x:Name="YourMessage"/>
+        <Button Content="Send" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="447,251,0,0" Click="Button_Click" Height="26"/>
+        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" Margin="114,289,0,0" x:Name="YourName"/>
+        <Label Content="Disconnected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="313,386,0,0" x:Name="status" Foreground="Red"/>
+        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Margin="33,386,0,0" x:Name="ip"/>
+        <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Margin="135,386,0,0" Click="ButtonConnect_Click" Height="23" x:Name="btConnect"/>
+        <Label Content="PremiumUserCount: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="410,386,0,0" x:Name="userCount"/>
+        <Label Content="Message:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,251,0,0"/>
+        <Label Content="Name (optional):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,289,0,0"/>
+        <Label Content="IP:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,383,0,0" RenderTransformOrigin="0.435,0.5"/>
+        <Label Content="Status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="263,386,0,0" RenderTransformOrigin="0.435,0.5"/>
 
     </Grid>
 </Window>
