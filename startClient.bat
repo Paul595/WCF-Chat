@@ -1,1 +1,0 @@
-start %~dp0\WPFClient\WPFClient\bin\Debug\WPFClient.exe

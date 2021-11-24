@@ -1,1 +1,0 @@
-start %~dp0\WCFService\WCFService\bin\Debug\WCFService.exe
