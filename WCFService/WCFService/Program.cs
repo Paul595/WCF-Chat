@@ -12,50 +12,40 @@ namespace WCFService
         [OperationContract]
         string whichServiceAmI();
         [OperationContract]
-        void sendMessage(string message, string sender="");
+        void sendMessage(string message);
         [OperationContract]
-        string receiveMessages(ref int id,bool myService =false);
+        string receiveMessages(ref int id);
     }
     public class Chat : IChat 
     {
-        static List<Message> messages = new List<Message>();
-   
+        static List<string> Nachrichten = new List<string>();
+
         public string whichServiceAmI()
         {
-            return "KatzensteinerMiedl";
+            return "BosichStein";
         }
 
-        public void sendMessage(string message, string sender="")
+        public void sendMessage(string message)
         {
-            messages.Add(new Message(sender, message));
+            Nachrichten.Add(message);
+
         }
 
-        public string receiveMessages(ref int id,bool mySerivce = false)
+        public string receiveMessages(ref int id)
         {
 
-            string reString = "";
+            string value = "";
             
-            for(int i = id + 1; i <messages.Count; i++)
+            for(int i = id + 1; i <Nachrichten.Count; i++)
             {
-                if (mySerivce) reString += messages[i].sender + ": " + messages[i].data + "\n";
-                else reString += messages[i].data + "\n";
+                value += Nachrichten[i] + "\n";
             }
-            id = messages.Count-1;
-            return reString;
+            id = Nachrichten.Count-1;
+            return value;
         }
 
     }
-    class Message
-    {
-        public string sender { get; set; }
-        public string data { get; set; }
-        public Message(string Sender, string Data)
-        {
-            sender = Sender;
-            data = Data;
-        }
-
-    }
+    
     class Program
     {
         static void Main(string[] args)
@@ -78,14 +68,14 @@ namespace WCFService
                 new WSHttpBinding(SecurityMode.None),
                 "http://"+ip+":2310/Chat");
 
-            //meinHost.Description.Behaviors.Add(
-            //    new ServiceDiscoveryBehavior());
-            //meinHost.Description.Endpoints.Add(
-            //    new UdpDiscoveryEndpoint());
+            meinHost.Description.Behaviors.Add(
+                new ServiceDiscoveryBehavior());
+            meinHost.Description.Endpoints.Add(
+                new UdpDiscoveryEndpoint());
 
             meinHost.Open();
 
-            //Console.WriteLine("läuft!");
+            Console.WriteLine("läuft!");
             Console.Write("Press Enter to quit:");
 
             Console.ReadLine();

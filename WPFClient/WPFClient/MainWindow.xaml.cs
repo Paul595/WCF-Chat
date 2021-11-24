@@ -25,9 +25,9 @@ namespace WPFClient
         [OperationContract]
         string whichServiceAmI();
         [OperationContract]
-        void sendMessage(string message, string sender = "");
+        void sendMessage(string message);
         [OperationContract]
-        string receiveMessages(ref int id, bool myService = false);
+        string receiveMessages(ref int id);
     }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -35,32 +35,36 @@ namespace WPFClient
     public partial class MainWindow : Window
     {
         public static IChat channel;
-        public static int messageIndex = 0;
-        public static bool connected = false;
+        public static int message_id = 0;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            int delay = 1000; //in ms
+
+            //---Code teil von Stackoverlow
+            int delay = 10; //in ms
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var listener = Task.Factory.StartNew(() =>
             {
                 while (true)
                 {
-                    if (connected)
+                    if (channel == null) continue;
+                    try
                     {
-                        try
+                        this.Dispatcher.Invoke(() =>
                         {
-                            this.Dispatcher.Invoke(() =>
-                            {
-                                MessagesBox.Text += channel.receiveMessages(ref messageIndex);
-                                //MessagesBox.Focus();
-                                MessagesBox.ScrollToEnd();
-                            });
-                        }
-                        catch (Exception) { };
+                            tb_AllMessages.Text += channel.receiveMessages(ref message_id);
+                            //MessagesBox.Focus();
+                            tb_AllMessages.ScrollToEnd();
+                        });
                     }
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+
+                    };
+                    
                     Thread.Sleep(delay);
                     if (token.IsCancellationRequested)
                         break;
@@ -68,29 +72,27 @@ namespace WPFClient
 
                 // cleanup, e.g. close connection
             }, token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            //---ende Stackoverflow
             return;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void bt_send_Click(object sender, RoutedEventArgs e)
         {
-            string n = YourName.Text == "" ? null : YourName.Text;
-            channel.sendMessage(YourMessage.Text,n);
-            return;
+            channel.sendMessage(tb_Message.Text);
         }
 
-        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+        private void bt_connect_click(object sender, RoutedEventArgs e)
         {
 
             ChannelFactory<IChat> fabrik = new ChannelFactory<IChat>(
                 new WSHttpBinding(SecurityMode.None),
-                "http://"+ip.Text+":2310/Chat");
+                "http://"+tb_ip.Text+":2310/Chat");
+
             channel = fabrik.CreateChannel();
-            status.Content = "Connected";
+            lb_status.Content = "Connected";
 
-            channel.sendMessage("Test", "");
-            connected = true;
+            channel.sendMessage("User connected");
 
-            return;
         }
     }
 

@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="557">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Height="224" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="529" x:Name="MessagesBox"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272" Margin="33,257,0,0" x:Name="YourMessage"/>
-        <Button Content="Senden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="344,256,0,0" Click="Button_Click"/>
-        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,299,0,0" x:Name="YourName"/>
-        <Label Content="Disconnected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,373,0,0" x:Name="status"/>
-        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="33,345,0,0" x:Name="ip"/>
-        <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="180,348,0,0" Click="ButtonConnect_Click"/>
+        Title="MainWindow" Height="291" Width="282">
+    <Grid Margin="0,0,2,0">
+        <TextBox HorizontalAlignment="Left" Height="173" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128" x:Name="tb_AllMessages"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128" Margin="10,200,0,0" x:Name="tb_Message"/>
+        <Button Content="Senden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,228,0,0" x:Name="bt_send" Click="bt_send_Click"/>
+        <Label Content="Disconnected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="143,38,0,0" x:Name="lb_status"/>
+        <TextBox   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="143,10,0,0" x:Name="tb_ip"/>
+        <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="150,69,0,0" x:Name="bt_connect" Click="bt_connect_click"/>
 
     </Grid>
 </Window>
